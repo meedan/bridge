@@ -6,7 +6,3 @@
 	path = pender
 	url = git@github.com:meedan/pender.git
 	branch = develop
-[submodule "checkdesk-client"]
-	path = check-web
-	url = git@github.com:meedan/check-web.git
-  branch = develop
