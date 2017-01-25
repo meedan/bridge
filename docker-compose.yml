@@ -7,8 +7,8 @@ services:
     volumes:
       - ./elasticsearch/config:/usr/share/elasticsearch/config
       - ./elasticsearch/data:/usr/share/elasticsearch/data
-      - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots      
-      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts      
+      - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots
+      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts
   postgres:
     image: postgres
     ports:
@@ -41,13 +41,13 @@ services:
       RAILS_ENV: development
       SERVER_PORT: 3200
   web:
-    build: check-web
+    build: bridge-web
     ports:
       - 3333:3333
     links:
       - api
     volumes:
-      - ./check-web:/app
+      - ./bridge-web:/app
     environment:
       PLATFORM: web
       NODE_ENV: development

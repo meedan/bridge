@@ -14,19 +14,19 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `check-api/config/sidekiq.yml.example` to `check-api/config/sidekiq.yml`
   - `pender/config/config.yml.example` to `pender/config/config.yml`
   - `pender/config/database.yml.example` to `pender/config/database.yml`
-  - `check-web/config.js.example` to `check-web/config.js`
-  - `check-web/test/config.js.example` to `check-web/test/config.js`
-  - `check-web/test/config.yml.example` to `check-web/test/config.yml`
+  - `bridge-web/config.js.example` to `bridge-web/config.js`
+  - `bridge-web/test/config.js.example` to `bridge-web/test/config.js`
+  - `bridge-web/test/config.yml.example` to `bridge-web/test/config.yml`
 - `docker-compose pull && docker-compose build --pull && docker-compose up`
 - Databases (Postgres, Elasticsearch, etc.) will persist across runs
 - Container names:
-  - `web` = Check web client, `development` mode
+  - `web` = Bridge web client, `development` mode
   - `api` = Check service, `development` mode
   - `pender` = Pender service, `development` mode
   - `elasticsearch` = Elasticsearch
   - `postgres` = Postgres
   - `chromedriver` = Selenium Chromedriver
-  - `web.test` = Check web client, `test` mode
+  - `web.test` = Bridge web client, `test` mode
   - `api.test` = Check service, `test` mode
   - `pender.test` = Pender service, `test` mode
 
@@ -36,7 +36,7 @@ Check works as a multi-tenant application, where each team is considered to be a
 For each team, Check redirects to a subdomain of the base app URL (e.g. `http://team-one.localhost:3333`).
 There are several concerns to take into account while setting up a subdomain-friendly Docker environment:
 
-- Ability to address any subdomain from a browser running on the local host and have the request handled by the Check web client.
+- Ability to address any subdomain from a browser running on the local host and have the request handled by the Bridge web client.
 - Ability for the backend Check service to address subdomains to verify the validity of new team subdomains.
 - Ability to run tests (including Selenium tests) from within the relevant Docker containers.
 
@@ -73,13 +73,13 @@ suffixed with the right ports for the various services. You can of course create
 
 ## Available services
 
-- Check web client at [http://test.localdev.checkmedia.org:3333](http://test.localdev.checkmedia.org:3333)
+- Bridge web client at [http://test.localdev.checkmedia.org:3333](http://test.localdev.checkmedia.org:3333)
 - Check service API at [http://test.localdev.checkmedia.org:3000/api](http://test.localdev.checkmedia.org:3000/api) - use `dev` as API key
 - Check service GraphQL at [http://test.localdev.checkmedia.org:3000/graphiql](http://test.localdev.checkmedia.org:3000/graphiql)
 - Pender service API at [http://test.localdev.checkmedia.org:3200/api](http://test.localdev.checkmedia.org:3200/api) - use `dev` as API key
 - Elasticsearch at [http://test.localdev.checkmedia.org:9200/_plugin/gui](http://test.localdev.checkmedia.org:9200/_plugin/gui)
 - Postgres at `test.localdev.checkmedia.org:5432` (use a standard Pg admin tool to connect)
-- Check web client / Test mode at [http://test.localdev.checkmedia.org:13333](http://test.localdev.checkmedia.org:13333)
+- Bridge web client / Test mode at [http://test.localdev.checkmedia.org:13333](http://test.localdev.checkmedia.org:13333)
 - Check service API / Test mode at [http://test.localdev.checkmedia.org:13000/api](http://test.localdev.checkmedia.org:13000/api) - use `test` as API key
 - Check service GraphQL / Test mode at [http://test.localdev.checkmedia.org:13000/graphiql](http://test.localdev.checkmedia.org:13000/graphiql)
 - Pender service API / Test mode at [http://test.localdev.checkmedia.org:13200/api](http://test.localdev.checkmedia.org:13200/api) - use `test` as API key
@@ -90,10 +90,10 @@ suffixed with the right ports for the various services. You can of course create
 
 - Build the app in test mode: `docker-compose -f docker-test.yml pull && docker-compose -f docker-test.yml build --pull`
 - Start the app in test mode: `docker-compose -f docker-test.yml up`
-- Check web client: `docker-compose -f docker-test.yml run web.test npm run test`
+- Bridge web client: `docker-compose -f docker-test.yml run web.test npm run test`
 - Check service: `docker-compose -f docker-test.yml run api.test bundle exec rake test`
 - Pender service: `docker-compose -f docker-test.yml run pender.test bundle exec rake test`
-- Running a specific Check web client test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec spec/app_spec.rb:63"`
+- Running a specific Bridge web client test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec spec/app_spec.rb:63"`
 - Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*keyword.*/`
 
 ## Helpful one-liners and scripts
@@ -110,10 +110,10 @@ suffixed with the right ports for the various services. You can of course create
 ## More documentation
 
 - [Check service API](https://github.com/meedan/check-api)
-- [Check web client](https://github.com/meedan/check-web)
+- [Bridge web client](https://github.com/meedan/bridge-web)
 - [Pender service API](https://github.com/meedan/pender)
 
 ## Troubleshooting
 
 ### `checkapp_web` fails with `Cannot find module 'express'` and exits
-The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
+The very first `docker-compose up` currently fails because `bridge-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
