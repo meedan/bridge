@@ -18,3 +18,10 @@
 	path = bridge-reader
 	url = git@github.com:meedan/bridge-reader.git
 	branch = develop
+[submodule "bridge-bot"]
+	path = bridge-bot
+	url = git@github.com:meedan/bridge-bot.git
+  branch = develop
+[submodule "bridge-client"]
+	path = bridge-client
+	url = git@github.com:meedan/bridge-client.git
