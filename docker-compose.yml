@@ -51,6 +51,8 @@ services:
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3100
+    links:
+      - elasticsearch
   reader:
     build: bridge-reader
     ports:
