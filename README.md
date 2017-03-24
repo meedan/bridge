@@ -64,7 +64,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Update submodules to their latest commit: `./bin/git-update.sh`
 - Cleanup docker images and volumes: `./bin/docker-clean.sh`
 - Packing your local config files: `./bin/tar-config.sh`
-- Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app checkapp_pender`
+- Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app bridge_pender`
 
 ## More documentation
 
@@ -74,5 +74,5 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## Troubleshooting
 
-### `checkapp_web` fails with `Cannot find module 'express'` and exits
+### `bridge_web` fails with `Cannot find module 'express'` and exits
 The very first `docker-compose up` currently fails because `bridge-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.

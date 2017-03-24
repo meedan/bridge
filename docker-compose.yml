@@ -27,7 +27,7 @@ services:
       - postgres
       - pender
       - alegre
-      - reader
+ #     - reader
     volumes:
       - ./check-api:/app
     environment:
@@ -53,15 +53,15 @@ services:
       SERVER_PORT: 3100
     links:
       - elasticsearch
-  reader:
-    build: bridge-reader
-    ports:
-      - 3400:3400
-    volumes:
-      - ./bridge-reader:/app
-    environment:
-      RAILS_ENV: development
-      SERVER_PORT: 3400
+#  reader:
+#    build: bridge-reader
+#    ports:
+#      - 3400:3400
+#    volumes:
+#      - ./bridge-reader:/app
+#    environment:
+#      RAILS_ENV: development
+#      SERVER_PORT: 3400
   web:
     build: bridge-web
     ports:
