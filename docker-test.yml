@@ -18,6 +18,8 @@ services:
       - elasticsearch
       - postgres
       - pender.test
+      - alegre.test
+ #     - reader.test
     volumes:
       - ./check-api:/app
     environment:
@@ -32,6 +34,26 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13200
+  alegre.test:
+    build: alegre
+    ports:
+      - 13100:13100
+    volumes:
+      - ./alegre:/app
+    environment:
+      RAILS_ENV: test
+      SERVER_PORT: 13100
+    links:
+      - elasticsearch
+#  reader.test:
+#    build: bridge-reader
+#    ports:
+#      - 13400:13400
+#    volumes:
+#      - ./bridge-reader:/app
+#    environment:
+#      RAILS_ENV: test
+#      SERVER_PORT: 13400
   web.test:
     build: bridge-web
     ports:
