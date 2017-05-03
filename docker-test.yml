@@ -63,6 +63,8 @@ services:
       - chromedriver
     volumes:
       - ./bridge-web:/app
+      - ./check-api:/api
+      - /app/node_modules
     environment:
       PLATFORM: web
       NODE_ENV: development

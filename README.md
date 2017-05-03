@@ -71,8 +71,3 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - [Check service API](https://github.com/meedan/check-api)
 - [Bridge web client](https://github.com/meedan/bridge-web)
 - [Pender service API](https://github.com/meedan/pender)
-
-## Troubleshooting
-
-### `bridge_web` fails with `Cannot find module 'express'` and exits
-The very first `docker-compose up` currently fails because `bridge-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
