@@ -76,4 +76,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 - [Check service API](https://github.com/meedan/check-api)
 - [Bridge web client](https://github.com/meedan/bridge-web)
+- [Bridge Reader web client](https://github.com/meedan/bridge-reader)
 - [Pender service API](https://github.com/meedan/pender)
+- [Alegre service API](https://github.com/meedan/alegre)
+- [Bridge bot](https://github.com/meedan/bridge-bot)
