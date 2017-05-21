@@ -22,6 +22,7 @@ services:
     ports:
       - 3000:3000
       - 6379:6379
+      - 9333:9333
     links:
       - elasticsearch
       - postgres
