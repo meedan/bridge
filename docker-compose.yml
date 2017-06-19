@@ -58,6 +58,7 @@ services:
     build: bridge-reader
     ports:
       - 3400:3400
+      - 9222:9222
     volumes:
       - ./bridge-reader:/app
     environment:
