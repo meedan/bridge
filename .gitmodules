@@ -1,14 +1,10 @@
 [submodule "checkdesk-api"]
 	path = check-api
 	url = git@github.com:meedan/check-api.git
-  branch = develop
+  	branch = develop
 [submodule "pender"]
 	path = pender
 	url = git@github.com:meedan/pender.git
-	branch = develop
-[submodule "bridge-web"]
-	path = bridge-web
-	url = git@github.com:meedan/bridge-web.git
 	branch = develop
 [submodule "alegre"]
 	path = alegre
@@ -21,4 +17,8 @@
 [submodule "bridge-bot"]
 	path = bridge-bot
 	url = git@github.com:meedan/bridge-bot.git
-  branch = develop
+  	branch = develop
+[submodule "check-web"]
+	path = check-web
+	url = git@github.com:meedan/check-web.git
+	branch = develop

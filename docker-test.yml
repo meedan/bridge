@@ -55,14 +55,14 @@ services:
       RAILS_ENV: test
       SERVER_PORT: 13400
   web.test:
-    build: bridge-web
+    build: check-web
     ports:
       - 13333:13333
     links:
       - api.test
       - chromedriver
     volumes:
-      - ./bridge-web:/app
+      - ./check-web:/app
       - ./check-api:/api
       - /app/node_modules
     environment:

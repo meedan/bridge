@@ -64,13 +64,13 @@ services:
       RAILS_ENV: development
       SERVER_PORT: 3400
   web:
-    build: bridge-web
+    build: check-web
     ports:
       - 3333:3333
     links:
       - api
     volumes:
-      - ./bridge-web:/app
+      - ./check-web:/app
       - ./check-api:/api
       - /app/node_modules
     environment:
