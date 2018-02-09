@@ -4,8 +4,13 @@ services:
     image: meedan/elasticsearch
     ports:
       - 9200:9200
+    volumes:
+      - ./elasticsearch/config:/usr/share/elasticsearch/config
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots
+      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts
   postgres:
-    image: postgres
+    image: postgres:9.6
     ports:
       - 5432:5432
     environment:
@@ -34,6 +39,22 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13200
+  web.test:
+    build: check-web
+    ports:
+      - 13333:13333
+    links:
+      - api.test
+      - chromedriver
+    volumes:
+      - ./check-web:/app
+      - ./check-api:/api
+      - /app/node_modules
+    environment:
+      PLATFORM: web
+      NODE_ENV: development
+      SERVER_PORT: 13333
+      MODE: test
   alegre.test:
     build: alegre
     ports:
@@ -70,6 +91,11 @@ services:
       PLATFORM: web
       NODE_ENV: development
       SERVER_PORT: 13333
+  geckodriver:
+    build: geckodriver
+    ports:
+      - 4445:4444
+      - 5901:5900
   chromedriver:
     build: chromedriver
     ports:
