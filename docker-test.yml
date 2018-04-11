@@ -76,21 +76,6 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13400
-  web.test:
-    build: check-web
-    ports:
-      - 13333:13333
-    links:
-      - api.test
-      - chromedriver
-    volumes:
-      - ./check-web:/app
-      - ./check-api:/api
-      - /app/node_modules
-    environment:
-      PLATFORM: web
-      NODE_ENV: development
-      SERVER_PORT: 13333
   geckodriver:
     build: geckodriver
     ports:
