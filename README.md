@@ -80,3 +80,8 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - [Pender service API](https://github.com/meedan/pender)
 - [Alegre service API](https://github.com/meedan/alegre)
 - [Bridge bot](https://github.com/meedan/bridge-bot)
+
+## Troubleshooting and known issues
+
+- Upon initial installation, the submodules may be checked out at a specific commit instead of the `develop` branch. You will need to go into each submodule and issue an explicit `git checkout develop`.
+- Upon initial installation, to make sure the frontend is up to date, issue an explicit `docker-compose exec web npm run build`.
