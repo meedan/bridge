@@ -21,6 +21,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `pender/config/database.yml.example` to `pender/config/database.yml`
   - `alegre/config/config.yml.example` to `alegre/config/config.yml`
   - `alegre/config/database.yml.example` to `alegre/config/database.yml`
+- Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
 - `docker-compose pull && docker-compose build --pull && docker-compose up`
 
 ## Available services and container names
@@ -34,7 +35,6 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Pender service API (container `pender`) at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
 - Alegre service API (container `alegre`) at [http://localhost:3100/api](http://localhost:3100/api) - use `dev` as API key
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
-- Elasticsearch GUI at [http://localhost:9200/_plugin/gui](http://localhost:9200/_plugin/gui)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
 
 ### `test` mode using `docker-test.yml`
@@ -46,7 +46,6 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Pender service API (container `pender.test`) at [http://localhost:13200/api](http://localhost:13200/api) - use `test` as API key
 - Alegre service API (container `alegre.test`) at [http://localhost:13100/api](http://localhost:13100/api) - use `test` as API key
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
-- Elasticsearch GUI at [http://localhost:9200/_plugin/gui](http://localhost:9200/_plugin/gui)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
 - Chromedriver (container `chromedriver`) at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
 - Chromedriver VNC at `localhost:5900` (use a standard VNC client to connect with password `secret`)
