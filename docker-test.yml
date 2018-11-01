@@ -1,9 +1,9 @@
 version: '2'
-
 volumes:
   esdata:
   pgdata:
-
+networks:
+  test-network:
 services:
   elasticsearch:
     image: meedan/elasticsearch:6.3
@@ -20,6 +20,8 @@ services:
     volumes:
       - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
       - "esdata:/usr/share/elasticsearch/data"
+    networks:
+      - test-network
   postgres:
     image: postgres:9.6
     command: postgres -c config_file=/etc/postgresql.conf
@@ -30,6 +32,8 @@ services:
     volumes:
       - "./postgresql.conf:/etc/postgresql.conf"
       - "pgdata:/var/lib/postgresql/data"
+    networks:
+      - test-network
   api.test:
     build: check-api
     ports:
@@ -43,6 +47,8 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13000
+    networks:
+      - test-network
   pender.test:
     build: pender
     ports:
@@ -52,6 +58,8 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13200
+    networks:
+      - test-network
   web.test:
     build: check-web
     ports:
@@ -68,6 +76,8 @@ services:
       NODE_ENV: development
       SERVER_PORT: 13333
       MODE: test
+    networks:
+      - test-network
   chromedriver:
     build: chromedriver
     ports:
@@ -79,6 +89,8 @@ services:
     volumes:
       - "./check-mark:/app"
       - "./check-web/test/spec/test.png:/app/test/spec/test.png"
+    networks:
+      - test-network
   alegre.test:
     build: alegre
     ports:
@@ -90,6 +102,8 @@ services:
       SERVER_PORT: 13100
     links:
       - elasticsearch
+    networks:
+      - test-network
   reader.test:
     build: bridge-reader
     ports:
@@ -100,3 +114,5 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13400
+    networks:
+      - test-network
