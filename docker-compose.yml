@@ -83,17 +83,27 @@ services:
       MODE: development
     networks:
       - dev-network
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.4.2
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    environment:
+      - "ELASTICSEARCH_URL: http://elasticsearch:9200"
+    networks:
+      - dev-network
   alegre:
     build: alegre
     ports:
       - "3100:3100"
     volumes:
       - "./alegre:/app"
+    depends_on:
+      - kibana
     environment:
-      RAILS_ENV: development
-      SERVER_PORT: 3100
-    links:
-      - elasticsearch
+      BOILERPLATE_ENV: dev
+      ALEGRE_PORT: 3100
     networks:
       - dev-network
   reader:

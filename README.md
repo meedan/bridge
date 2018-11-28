@@ -19,8 +19,6 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `check-api/config/sidekiq.yml.example` to `check-api/config/sidekiq.yml`
   - `pender/config/config.yml.example` to `pender/config/config.yml`
   - `pender/config/database.yml.example` to `pender/config/database.yml`
-  - `alegre/config/config.yml.example` to `alegre/config/config.yml`
-  - `alegre/config/database.yml.example` to `alegre/config/database.yml`
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
 - `docker-compose pull && docker-compose build --pull && docker-compose up`
 
@@ -33,7 +31,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check service API (container `api`) at [http://localhost:3000/api](http://localhost:3000/api) - use `dev` as API key
 - Check service GraphQL at [http://localhost:3000/graphiql](http://localhost:3000/graphiql)
 - Pender service API (container `pender`) at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
-- Alegre service API (container `alegre`) at [http://localhost:3100/api](http://localhost:3100/api) - use `dev` as API key
+- Alegre service API (container `alegre`) at [http://localhost:3100](http://localhost:3100) - no need for an API key
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
 
@@ -44,7 +42,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check service API (container `api.test`) at [http://localhost:13000/api](http://localhost:13000/api) - use `test` as API key
 - Check service GraphQL at [http://localhost:13000/graphiql](http://localhost:13000/graphiql)
 - Pender service API (container `pender.test`) at [http://localhost:13200/api](http://localhost:13200/api) - use `test` as API key
-- Alegre service API (container `alegre.test`) at [http://localhost:13100/api](http://localhost:13100/api) - use `test` as API key
+- Alegre service API (container `alegre`) at [http://localhost:3100](http://localhost:3100) - no need for an API key
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
 - Chromedriver (container `chromedriver`) at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
