@@ -3,7 +3,7 @@ volumes:
   esdata:
   pgdata:
 networks:
-  dev-network:
+  dev:
 services:
   elasticsearch:
     image: meedan/elasticsearch:6.3
@@ -21,7 +21,7 @@ services:
       - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
       - "esdata:/usr/share/elasticsearch/data"
     networks:
-      - dev-network
+      - dev
   postgres:
     image: postgres:9.6
     command: postgres -c config_file=/etc/postgresql.conf
@@ -33,7 +33,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
     networks:
-      - dev-network
+      - dev
   api:
     build: check-api
     ports:
@@ -52,7 +52,7 @@ services:
       RAILS_ENV: development
       SERVER_PORT: 3000
     networks:
-      - dev-network
+      - dev
   pender:
     build: pender
     shm_size: 1G
@@ -65,7 +65,7 @@ services:
       RAILS_ENV: development
       SERVER_PORT: 3200
     networks:
-      - dev-network
+      - dev
   web:
     build: check-web
     ports:
@@ -82,7 +82,7 @@ services:
       SERVER_PORT: 3333
       MODE: development
     networks:
-      - dev-network
+      - dev
   kibana:
     image: docker.elastic.co/kibana/kibana:6.4.2
     ports:
@@ -92,7 +92,7 @@ services:
     environment:
       - "ELASTICSEARCH_URL: http://elasticsearch:9200"
     networks:
-      - dev-network
+      - dev
   alegre:
     build: alegre
     ports:
@@ -105,7 +105,7 @@ services:
       BOILERPLATE_ENV: dev
       ALEGRE_PORT: 3100
     networks:
-      - dev-network
+      - dev
   reader:
     build: bridge-reader
     ports:
@@ -117,4 +117,4 @@ services:
       RAILS_ENV: development
       SERVER_PORT: 3400
     networks:
-      - dev-network
+      - dev
