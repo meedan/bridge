@@ -6,11 +6,12 @@ networks:
   test:
 services:
   elasticsearch:
-    image: meedan/elasticsearch:6.3
+    build: ./alegre/elasticsearch
     environment:
       - "cluster.name=docker-cluster"
       - "bootstrap.memory_lock=true"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
+      - "ALEGRE_URL=http://alegre:13100"
     ulimits:
       memlock:
         soft: -1
@@ -92,7 +93,7 @@ services:
     networks:
       - test
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.4.2
+    image: docker.elastic.co/kibana/kibana:6.3.0
     ports:
       - "5601:5601"
     depends_on:
