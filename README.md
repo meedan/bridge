@@ -9,9 +9,6 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Install `docker-compose`
 - `git clone --recursive git@github.com:meedan/bridge.git && cd bridge`
 - Configuration - copy and edit the following files:
-  - `bridge-web/config.js.example` to `bridge-web/config.js`
-  - `bridge-web/test/config.js.example` to `bridge-web/test/config.js`
-  - `bridge-web/test/config.yml.example` to `bridge-web/test/config.yml`
   - `bridge-reader/config/bridgembed.yml.example` to `bridge-reader/config/bridgembed.yml`
   - `bridge-reader/config/database.yml.example` to `bridge-reader/config/database.yml`
   - `check-api/config/config.yml.example` to `check-api/config/config.yml`
@@ -19,6 +16,12 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `check-api/config/sidekiq.yml.example` to `check-api/config/sidekiq.yml`
   - `pender/config/config.yml.example` to `pender/config/config.yml`
   - `pender/config/database.yml.example` to `pender/config/database.yml`
+  - `check-web/config.js.example` to `check-web/config.js`
+  - `check-web/config-build.js.example` to `check-web/config-build.js`
+  - `check-web/config-server.js.example` to `check-web/config-server.js`
+  - `check-web/test/config.js.example` to `check-web/test/config.js`
+  - `check-web/test/config.yml.example` to `check-web/test/config.yml`
+  - `alegre/google_credentials.example.json` to `alegre/google_credentials.json`
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
 - `docker-compose pull && docker-compose build --pull && docker-compose up`
 
@@ -33,6 +36,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Pender service API (container `pender`) at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
 - Alegre service API (container `alegre`) at [http://localhost:3100](http://localhost:3100) - no need for an API key
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
+- Kibana Elasticsearch UI (container `kibana`) at [http://localhost:5601](http://localhost:5601)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
 
 ### `test` mode using `docker-test.yml`
@@ -44,6 +48,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Pender service API (container `pender.test`) at [http://localhost:13200/api](http://localhost:13200/api) - use `test` as API key
 - Alegre service API (container `alegre`) at [http://localhost:3100](http://localhost:3100) - no need for an API key
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
+- Kibana Elasticsearch UI (container `kibana`) at [http://localhost:5601](http://localhost:5601)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
 - Chromedriver (container `chromedriver`) at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
 - Chromedriver VNC at `localhost:5900` (use a standard VNC client to connect with password `secret`)
